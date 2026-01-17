@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EDDIE | Autonomous Systems Builder</title>
+    <meta name="description" content="From half-formed idea to functioning infrastructure." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Space Grotesk', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              'sys-black': '#050505',
+              'sys-gray': '#1a1a1a',
+              'sys-green': '#00ff41',
+              'sys-red': '#ff3333',
+              'sys-white': '#e0e0e0',
+            },
+            animation: {
+              'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'scanline': 'scanline 8s linear infinite',
+            },
+            keyframes: {
+              scanline: {
+                '0%': { transform: 'translateY(-100%)' },
+                '100%': { transform: 'translateY(100%)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #050505;
+        color: #e0e0e0;
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #050505;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border: 1px solid #050505;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+      
+      /* Loading Bar Text Animation */
+      .loading-bar-char {
+        display: inline-block;
+        /* Gradient: Bottom is White (Full), Top is Dark Gray (Empty) */
+        background-image: linear-gradient(to top, #e0e0e0 50%, #1a1a1a 50%);
+        background-size: 100% 200%;
+        background-position: 0% 0%; /* Start at top (Empty/Dark) */
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        /* Slowed down to 7.5s to kill the wave effect and create a heavy fill */
+        animation: fill-up 7.5s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+        /* Ensure text remains sharp */
+        -webkit-font-smoothing: antialiased;
+      }
+
+      @keyframes fill-up {
+        0% { background-position: 0% 0%; } /* Empty */
+        40% { background-position: 0% 100%; } /* Filled */
+        70% { background-position: 0% 100%; } /* Hold */
+        80% { opacity: 1; }
+        90% { opacity: 0.5; } /* Glitch/Flicker reset hint */
+        100% { background-position: 0% 0%; opacity: 1; } /* Reset to empty */
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
